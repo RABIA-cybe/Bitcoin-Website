@@ -118,6 +118,7 @@ header .buttons-container a#login-btn {
 /* HERO SECTION  */
 
 #hero-sec{
+    width: 100%;
     position: relative;
     color: white;
     padding: 6% 0 18%;
@@ -214,3 +215,69 @@ header .buttons-container a#login-btn {
         width: 100%;
     }
 }
+
+
+#currencies-sec{
+width: 100%;
+}
+
+#currencies-sec .currencies-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+#currencies-sec .currencies-content .currency-container{
+    width: calc(100% / 4 - 30px);
+    color: #181885;
+    background-color: white;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 15px;
+    border-radius: 10px;
+    box-shadow: -10px 8px 15px lightgray, /*left and bottom*/
+            10px 8px 15px lightgray; /*right and bottom*/
+}
+
+#currencies-sec .currencies-content .currency-container .currency-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-header .currency-name {
+    display: flex;
+    align-items: center;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-header .currency-name h5{
+    font-size: 18px;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-header .change-24hr{
+    background-color: #adaaaa;
+    color: white;
+    font-size: 18px;
+    padding: 0 6px;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-header .currency-name img{
+    width: 40px;
+    margin-right: 10px;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-body .currency-price{
+font-size: 26px;
+}
+
+#currencies-sec .currencies-content .currency-container .currency-body .change-in-percent{
+font-size: 20px;
+}
+
