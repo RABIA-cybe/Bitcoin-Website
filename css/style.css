@@ -4,6 +4,9 @@
     box-sizing: border-box;
 
 }
+html {
+    scroll-behavior: smooth;
+  }
 
 
 :root {
@@ -11,6 +14,7 @@
     --body-text: 18px;
     --h3-text: 22px;
     --section-heading:36px;
+    --blue-color:#003a7b;
 }
 
 a{
@@ -120,6 +124,7 @@ header .buttons-container a {
 
 header .buttons-container a:hover {
     background-color: var(--primary-color);
+    color: white;
 }
 
 header .buttons-container a#login-btn {
@@ -215,6 +220,7 @@ header .buttons-container a#login-btn {
     padding: 17px 15px;
     font-family: 'PoppinsMedium';
     cursor: pointer;
+    border: none;
 }
 
 @keyframes animate {
@@ -327,7 +333,7 @@ text-align: center;
 #trusted-sec .header-row p{
     font-size: var(--body-text);
     text-transform: capitalize;
-    color: #181885;
+    color: var(--blue-color);
     line-height: 1em;
     text-align: center;
     margin-top: 20px;
@@ -350,7 +356,7 @@ text-align: center;
         align-items: center;
         text-align: center;
         margin-right: 50px;
-        color: #181885;
+        color: var(--blue-color);
     }
 
     #trusted-sec .content-row .t-card:last-child{
@@ -406,22 +412,33 @@ text-align: center;
     }
 
     #bitcoinUSD-sec .content-row{
-        
         margin-top: 40px;
+       
     }
 
     #bitcoinUSD-sec .content-row .priceTable{
+        padding: 20px 30px;
+        font-size: var(--body-text);
         background-color: white;
+    }
+
+    #bitcoinUSD-sec .content-row .priceTable h4{
+    font-size: 28px;
+    color: #181885;
+    text-transform: uppercase;
+    margin: 30px 0;
     }
 
     #bitcoinUSD-sec .content-row .priceTable .tableHeader{
         background-color: #fbfafa;
         display: flex;
+        padding: 20px 10px;
     }
 
     #bitcoinUSD-sec .content-row .priceTable .tableHeader h3{
         width: calc(20% - 20px);
         margin-right:20px;
+        color: #181885;
         
     }
 
@@ -431,20 +448,76 @@ text-align: center;
 
     #bitcoinUSD-sec .content-row .priceTable .tableBody {
         display: flex;
+        padding: 15px 10px;
+        border-bottom: 1px solid #d0d8e1;
+    }
 
+    #bitcoinUSD-sec .content-row .priceTable .tableBody:last-child{
+        border-bottom: none;
     }
 
     #bitcoinUSD-sec .content-row .priceTable .tableBody p{
         width: calc(20% - 20px);
-        margin-right: 0;
-        
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    #bitcoinUSD-sec .content-row .priceTable .tableBody p:nth-child(2){
+        color: green;
+        font-weight: 600;
     }
 
     #bitcoinUSD-sec .content-row .priceTable .tableBody .btn{
-        width: (calc(20% - 20px));
+        width: 20%;
+
+    }
+
+    #bitcoinUSD-sec .content-row .priceTable .tableBody .btn a{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
 
     }
 
     #bitcoinUSD-sec .content-row .priceTable .tableBody .btn button{
+        background-color: var(--blue-color);
+    color: white;
+    padding: 13px 20px;
+    width: 85%;
+    font-size: var(--body-text);
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    }
+
+    /* About Info Section  */
+    #aboutInfoSec{
+        width: 100%;
+        background-color: var(--blue-color);
+        color: white;
+    }
+
+    #aboutInfoSec .content{
+        display: flex;
+        justify-content: space-between;
+        padding: 60px 20px;
+
+    }
+
+    #aboutInfoSec .content .aboutInfoCol{
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    #aboutInfoSec .content .aboutInfoCol h3{
+        font-size: 52px;
+        margin-bottom: 10px;
+    }
+
+    #aboutInfoSec .content .aboutInfoCol p{
+        font-size: var(--body-text);
+        color:  #276ba9;
         
     }
