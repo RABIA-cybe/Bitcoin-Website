@@ -43,6 +43,8 @@ function animateNumbersWhenVisible() {
     rootMargin: '0px',
     threshold: 0.5, // Adjust this threshold value as needed, this 0.5 means the element will start animating when it's at least 50% visible in the viewport.
   };
+
+  // Using Intersection Observer API to target if the user has scrolled to numbers section 
   
   let observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
