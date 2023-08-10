@@ -8,7 +8,7 @@ var swiper = new Swiper(".mySwiper", {
     shadowScale: 0.94,
   },
   autoplay: {
-    delay: 2500,
+    delay: 4000,
     disableOnInteraction: false,
   },
   pagination: {
@@ -71,4 +71,89 @@ function animateNumbersWhenVisible() {
 
 // Call the function when the document is loaded
 document.addEventListener("DOMContentLoaded", animateNumbersWhenVisible);
+
+
+
+
+function formatNumberWithTwoDecimals(number) {
+  if (typeof number !== 'number') {
+    throw new Error('Input is not a valid number.');
+  }
+
+  return number.toFixed(2);
+}
+
+
+let bitcoinPrice = document.getElementById("bitcoinPrice");
+let ethereumPrice = document.getElementById("ethereumPrice");
+let litecoinPrice = document.getElementById("litecoinPrice");
+let tetherPrice = document.getElementById("tetherPrice");
+let bitcoinChange = document.getElementById("bitcoinChange");
+let ethereumChange = document.getElementById("ethereumChange");
+let litecoinChange = document.getElementById("litecoinChange");
+let tetherChange = document.getElementById("tetherChange");
+
+let currencyName = document.querySelectorAll(".currencyName");
+let currencyPrice = document.querySelectorAll(".currencyPrice");
+let currencyChange = document.querySelectorAll(".currencyChange");
+let currencyVWAP24Hr = document.querySelectorAll(".currencyVWAP24Hr");
+
+
+
+// Fetching API 
+fetch('https://api.coincap.io/v2/assets')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.data); // Do something with the data
+    
+    if (data.data && data.data.length > 0) {
+      bitcoinPrice.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[0].priceUsd));
+      bitcoinChange.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[0].changePercent24Hr));
+      ethereumPrice.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[1].priceUsd));
+      ethereumChange.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[1].changePercent24Hr));
+      litecoinPrice.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[12].priceUsd));
+      litecoinChange.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[12].changePercent24Hr));
+      tetherPrice.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[2].priceUsd));
+      tetherChange.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[2].changePercent24Hr));
+
+
+
+      let i =0;
+
+      currencyName.forEach(element => {
+        element.textContent =data.data[i].name;
+        i += 1;
+        console.log(element.textContent);
+      });
+
+      currencyPrice.forEach(element => {
+        element.textContent ="$"+ formatNumberWithTwoDecimals(parseFloat(data.data[i].priceUsd))+ " US";
+        i += 1;
+        console.log(element.textContent);
+      });
+
+       currencyChange.forEach(element => {
+        element.textContent =formatNumberWithTwoDecimals(parseFloat(data.data[i].changePercent24Hr))+"%";
+        i += 1;
+        console.log(element.textContent);
+        
+      });
+
+      currencyVWAP24Hr.forEach(element => {
+        element.textContent =formatNumberWithTwoDecimals(parseFloat(data.data[i].vwap24Hr));
+        i += 1;
+        console.log(element.textContent);
+      });
+
+
+
+
+
+    } else {
+      console.error('No data available in the response.');
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
 
