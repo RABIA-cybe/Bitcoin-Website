@@ -98,6 +98,10 @@ let currencyPrice = document.querySelectorAll(".currencyPrice");
 let currencyChange = document.querySelectorAll(".currencyChange");
 let currencyVWAP24Hr = document.querySelectorAll(".currencyVWAP24Hr");
 
+let newsDate = document.querySelectorAll(".newsDate");
+let newsHeadline = document.querySelectorAll(".newsHeadline")
+let news = document.querySelectorAll(".news");
+
 
 
 // Fetching API 
@@ -156,4 +160,5 @@ fetch('https://api.coincap.io/v2/assets')
   .catch(error => {
     console.error('Error fetching data:', error);
   });
+
 
