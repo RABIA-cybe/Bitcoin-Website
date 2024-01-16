@@ -8,7 +8,7 @@ var swiper = new Swiper(".mySwiper", {
     shadowScale: 0.94,
   },
   autoplay: {
-    delay: 4000,
+    delay: 6000,
     disableOnInteraction: false,
   },
   pagination: {
@@ -34,6 +34,7 @@ AOS.init();
 //   }, duration);
 // })
 
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
 function animateNumbersWhenVisible() {
   let valueDisplays = document.querySelectorAll(".num");
   let interval = 4000;
@@ -97,10 +98,12 @@ let currencyName = document.querySelectorAll(".currencyName");
 let currencyPrice = document.querySelectorAll(".currencyPrice");
 let currencyChange = document.querySelectorAll(".currencyChange");
 let currencyVWAP24Hr = document.querySelectorAll(".currencyVWAP24Hr");
+let tradeBtn = document.querySelectorAll(".tradeBtn a");
 
 let newsDate = document.querySelectorAll(".newsDate");
 let newsHeadline = document.querySelectorAll(".newsHeadline")
-let news = document.querySelectorAll(".news");
+let news = document.querySelectorAll(".news p");
+let newsLink = document.querySelectorAll(".newsLink");
 
 
 
@@ -108,7 +111,7 @@ let news = document.querySelectorAll(".news");
 fetch('https://api.coincap.io/v2/assets')
   .then(response => response.json())
   .then(data => {
-    console.log(data.data); // Do something with the data
+    // console.log(data.data); // Do something with the data
     
     if (data.data && data.data.length > 0) {
       bitcoinPrice.textContent = formatNumberWithTwoDecimals(parseFloat(data.data[0].priceUsd));
@@ -127,26 +130,40 @@ fetch('https://api.coincap.io/v2/assets')
       currencyName.forEach(element => {
         element.textContent =data.data[i].name;
         i += 1;
-        console.log(element.textContent);
+        // console.log(element.textContent);
       });
+
+       i =0;
 
       currencyPrice.forEach(element => {
         element.textContent ="$"+ formatNumberWithTwoDecimals(parseFloat(data.data[i].priceUsd))+ " US";
         i += 1;
-        console.log(element.textContent);
+        // console.log(element.textContent);
       });
+
+      i =0;
 
        currencyChange.forEach(element => {
         element.textContent =formatNumberWithTwoDecimals(parseFloat(data.data[i].changePercent24Hr))+"%";
         i += 1;
-        console.log(element.textContent);
+        // console.log(element.textContent);
         
       });
+
+      i =0;
 
       currencyVWAP24Hr.forEach(element => {
         element.textContent =formatNumberWithTwoDecimals(parseFloat(data.data[i].vwap24Hr));
         i += 1;
-        console.log(element.textContent);
+        // console.log(element.textContent);
+      });
+
+      let j = 0;
+
+      tradeBtn.forEach(element => {
+        element.href =data.data[j].explorer;
+        j += 1;
+        // console.log(element.textContent);
       });
 
 
@@ -162,3 +179,120 @@ fetch('https://api.coincap.io/v2/assets')
   });
 
 
+  function removeContentAfterThreeDots(str) {
+    const parts = str.split('[');
+    const result = parts[0];
+    console.log(parts);
+  
+    return result;
+  }
+
+  function formatDate(inputDate) {
+    const date = new Date(inputDate);
+    
+    // Get day, month, and year components
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
+  
+    // Construct the formatted date string
+    const formattedDate = `${day} ${month} ${year}`;
+  
+    return formattedDate;
+  }
+
+  function limitWords(inputString, limit) {
+    // Split the input string into an array of words
+    const words = inputString.split(/\s+/);
+
+    // Slice the array to keep only the first 'limit' words
+    const limitedWords = words.slice(0, limit);
+
+    // Join the limited words back into a string
+    const resultString = limitedWords.join(' ');
+
+    return resultString;
+}
+
+
+  // Fetching News API 
+  
+  fetch('https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=f37eb6d921ff4ca287b3e54573aa50b8')
+  .then(responseNews => responseNews.json())
+  .then(data => {
+    // console.log(data.articles[0].title); // Do something with the data
+    
+    if (data.articles && data.articles.length > 0) {
+
+
+
+      let k =0;
+
+      newsDate.forEach(element => {
+        element.textContent = formatDate(data.articles[k].publishedAt);
+        k += 1;
+        // console.log(element.textContent);
+      });
+
+      k=0;
+
+      newsHeadline.forEach(element => {
+        element.textContent =limitWords(data.articles[k].title, 10);
+        k += 1;
+        // console.log(element.textContent);
+      });
+
+      k=0;
+
+      news.forEach(element => {
+        element.textContent = removeContentAfterThreeDots(data.articles[k].content);
+        element.textContent = `${element.textContent} `;
+        
+        k += 1;
+        // console.log(element.textContent);
+      });
+
+      k=0;
+
+
+      newsLink.forEach(element => {
+        element.href = data.articles[k].url;
+        
+        k += 1;
+        // console.log(element.textContent);
+      });
+
+
+
+
+
+
+
+    } else {
+      console.error('No News data available in the response.');
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
+  // var mediaQuery = window.matchMedia("(max-width: 768px)");
+
+// Code for Mobile responsive Menu 
+let menuIcon = document.getElementById("menu-icon");
+let mobileNav = document.getElementById("mobile-navigation")
+menuIcon.onclick =  function mobNav()
+{
+  mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
+  
+}  
+
+mobileNav.addEventListener('focusout', function () {
+  this.style.display = 'none';
+  document.getElementById('menu-icon').classList.toggle('open');
+});
+
+document.getElementById('menu-icon').addEventListener('click', function() {
+  this.classList.toggle('open');
+  // Add your code to toggle the menu or perform other actions
+});
