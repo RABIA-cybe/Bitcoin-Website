@@ -296,3 +296,22 @@ document.getElementById('menu-icon').addEventListener('click', function() {
   this.classList.toggle('open');
   // Add your code to toggle the menu or perform other actions
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Set up an event listener to hide the loader when the entire page is loaded
+  window.addEventListener("load", function () {
+      document.getElementById("loader-wrapper").style.display = "none";
+      document.getElementById("content").style.display = "block";
+  });
+
+  // Add any additional initialization code here if needed
+});
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Simulate the delay of your content loading
+//   setTimeout(function () {
+//       document.getElementById("loader-wrapper").style.display = "none";
+//       document.getElementById("content").style.display = "block";
+//   }, 100000); // Adjust the delay time (in milliseconds) based on your needs
+// });
