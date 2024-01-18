@@ -217,19 +217,88 @@ fetch('https://api.coincap.io/v2/assets')
 
   // Fetching News API 
   
-  fetch('https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=f37eb6d921ff4ca287b3e54573aa50b8')
-  .then(responseNews => responseNews.json())
-  .then(data => {
-    // console.log(data.articles[0].title); // Do something with the data
+  // fetch('https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=f37eb6d921ff4ca287b3e54573aa50b8')
+  // .then(responseNews => responseNews.json())
+  // .then(data => {
+  //   // console.log(data.articles[0].title); // Do something with the data
     
-    if (data.articles && data.articles.length > 0) {
+  //   if (data.articles && data.articles.length > 0) {
+
+
+
+  //     let k =0;
+
+  //     newsDate.forEach(element => {
+  //       element.textContent = formatDate(data.articles[k].publishedAt);
+  //       k += 1;
+  //       // console.log(element.textContent);
+  //     });
+
+  //     k=0;
+
+  //     newsHeadline.forEach(element => {
+  //       element.textContent =limitWords(data.articles[k].title, 10);
+  //       k += 1;
+  //       // console.log(element.textContent);
+  //     });
+
+  //     k=0;
+
+  //     news.forEach(element => {
+  //       element.textContent = removeContentAfterThreeDots(data.articles[k].content);
+  //       element.textContent = `${element.textContent} `;
+        
+  //       k += 1;
+  //       // console.log(element.textContent);
+  //     });
+
+  //     k=0;
+
+
+  //     newsLink.forEach(element => {
+  //       element.href = data.articles[k].url;
+        
+  //       k += 1;
+  //       // console.log(element.textContent);
+  //     });
+
+
+
+
+
+
+
+  //   } else {
+  //     console.error('No News data available in the response.');
+  //   }
+  // })
+  // .catch(error => {
+  //   console.error('Error fetching data:', error);
+  // });
+
+
+
+
+
+
+
+  // Fetching News Data API 
+  
+  fetch('https://newsdata.io/api/1/news?apikey=pub_36659ef8d4de1adb2b89e425d97ed6bc8c74e&q=cryptocurrency&language=en')
+  .then(responseNewsData => responseNewsData.json())
+  .then(data => {
+    console.log("Printing news");
+    console.log(data);
+    
+    
+    if (data.results && data.results.length > 0) {
 
 
 
       let k =0;
 
       newsDate.forEach(element => {
-        element.textContent = formatDate(data.articles[k].publishedAt);
+        element.textContent = formatDate(data.results[k].pubDate);
         k += 1;
         // console.log(element.textContent);
       });
@@ -237,7 +306,7 @@ fetch('https://api.coincap.io/v2/assets')
       k=0;
 
       newsHeadline.forEach(element => {
-        element.textContent =limitWords(data.articles[k].title, 10);
+        element.textContent =limitWords(data.results[k].title, 10);
         k += 1;
         // console.log(element.textContent);
       });
@@ -245,7 +314,7 @@ fetch('https://api.coincap.io/v2/assets')
       k=0;
 
       news.forEach(element => {
-        element.textContent = removeContentAfterThreeDots(data.articles[k].content);
+        element.textContent = limitWords(data.results[k].description, 20);
         element.textContent = `${element.textContent} `;
         
         k += 1;
@@ -256,7 +325,7 @@ fetch('https://api.coincap.io/v2/assets')
 
 
       newsLink.forEach(element => {
-        element.href = data.articles[k].url;
+        element.href = data.results[k].source_url;
         
         k += 1;
         // console.log(element.textContent);
@@ -275,6 +344,9 @@ fetch('https://api.coincap.io/v2/assets')
   .catch(error => {
     console.error('Error fetching data:', error);
   });
+
+
+
 
   // var mediaQuery = window.matchMedia("(max-width: 768px)");
 
@@ -301,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set up an event listener to hide the loader when the entire page is loaded
   window.addEventListener("load", function () {
       document.getElementById("loader-wrapper").style.display = "none";
-      document.getElementById("content").style.display = "block";
+      
   });
 
   // Add any additional initialization code here if needed

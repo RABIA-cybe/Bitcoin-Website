@@ -706,6 +706,7 @@ header .buttons-container a#login-btn {
     color: #181885;
     font-size: var(--body-text);
     text-align: center;
+    min-height: 70px;
 
 }
 
@@ -1176,6 +1177,10 @@ footer .copyrightRow p {
             left: 0%;
         }
     }
+
+    #news .content {
+        padding: 15px 20px;
+    }
 }
 
 @media only screen and (max-width:751px) {
@@ -1363,6 +1368,12 @@ footer .copyrightRow p {
 
 }
 
+@media only screen and (max-width:600px){
+    #news .content .newsContainer .news p {
+        min-height: 90px;
+    }
+}
+
 @media only screen and (max-width:480px) {
     #mobile-header .logo img {
         width: 60%;
@@ -1452,6 +1463,10 @@ footer .copyrightRow p {
         font-size: 18px;
     }
 
+    #news .content .newsContainer .news p {
+        min-height: 140px;
+    }
+
     footer .purchaseRow h3{
         font-size: 16px;
         text-align: center;
@@ -1482,6 +1497,10 @@ footer .copyrightRow p {
 
     #hero-sec .hero-content form input, footer .purchaseRow form input {
         width: 100%;
+    }
+
+    #news .content .newsContainer .news p {
+        min-height: 160px;
     }
 
 
