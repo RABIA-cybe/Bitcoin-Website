@@ -1472,3 +1472,17 @@ footer .copyrightRow p {
 
 
 }
+
+@media only screen and (max-width:360px){
+    #hero-sec .hero-content form {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 10px;
+    }
+
+    #hero-sec .hero-content form input {
+        width: 100%;
+    }
+
+
+}
