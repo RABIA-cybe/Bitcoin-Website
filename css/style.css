@@ -1283,13 +1283,13 @@ footer .copyrightRow p {
     }
 
     footer .purchaseRow form input {
-        width: 255px;
+        width: 272px;
     }
 
     footer .purchaseRow form button {
-        width: 33%;
+        width: 30%;
         padding: 12px 10px;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     footer .mainFooter .logo-container img {
@@ -1474,13 +1474,13 @@ footer .copyrightRow p {
 }
 
 @media only screen and (max-width:360px){
-    #hero-sec .hero-content form {
+    #hero-sec .hero-content form, footer .purchaseRow form{
         flex-wrap: wrap;
         justify-content: center;
         row-gap: 10px;
     }
 
-    #hero-sec .hero-content form input {
+    #hero-sec .hero-content form input, footer .purchaseRow form input {
         width: 100%;
     }
 
